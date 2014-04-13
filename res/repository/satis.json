@@ -1,0 +1,16 @@
+{
+    "name": "My Repository",
+    "homepage": "http://packages.example.org",
+    "notify-batch": "/notify.php",
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "example/test",
+                "type": "metapackage",
+                "version": "1.0.1"
+            }
+        }
+    ],
+    "require-all": true
+}
