@@ -7,13 +7,13 @@ $downloads = json_decode( file_get_contents(__DIR__ . '/example.dump.json'), tru
 var_dump($downloads);
 $tracker = new \Cotya\CDT\Tracker();
 
-$version = "1.2.0.0-patch3";
+//$version = "1.2.0.0-patch3";
 foreach( $downloads as $download )
 {
     try{
         $tracker->track( $download["name"], $download["version"]);
     }catch(Exception $e){
-        echo $version . ' is not valid'.PHP_EOL;
+        echo $download["version"] . ' is not valid'.PHP_EOL;
     }
 }
 
