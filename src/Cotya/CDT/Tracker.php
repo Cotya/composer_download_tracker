@@ -10,13 +10,18 @@ namespace Cotya\CDT;
 
 
 use Composer\Package\Version\VersionParser;
+use Cotya\CDT\Model\Downloads;
+use Cotya\CDT\Resource\Downloads\Pdo;
 
 class Tracker {
 
+    protected $downloads;
     
     public function __construct()
     {
-        
+        //$pdo = new \PDO("sqlite:downloads.db");
+        $pdo = new \PDO("mysql:host=127.0.0.1;dbname=composer_tracker", "root");
+        $this->downloads = new Downloads( new Pdo($pdo) );
     }
 
     /**
@@ -26,9 +31,7 @@ class Tracker {
      */
     public function track( $name, $version )
     {
-        $versionParser = new VersionParser();
-        var_dump($name, $version);
-        var_dump( $versionParser->normalize($version) );
+        $this->downloads->add($name, $version, new \DateTime() );
     }
     
 } 
